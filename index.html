@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>JOA Email Templates - Menu</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Montserrat', Arial, sans-serif;
+			background: linear-gradient(135deg, #460055 0%, #7b1f82 100%);
+			min-height: 100vh;
+			padding: 40px 20px;
+		}
+
+		.container {
+			max-width: 900px;
+			margin: 0 auto;
+		}
+
+		.header {
+			text-align: center;
+			margin-bottom: 50px;
+			color: #ffffff;
+		}
+
+		.header h1 {
+			font-size: 48px;
+			margin-bottom: 10px;
+			font-family: 'DM Serif Display', Georgia, serif;
+			font-weight: 400;
+		}
+
+		.header p {
+			font-size: 16px;
+			color: rgba(255, 255, 255, 0.9);
+			font-weight: 300;
+		}
+
+		.templates-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 20px;
+			margin-bottom: 40px;
+		}
+
+		.template-card {
+			background: #ffffff;
+			border-radius: 16px;
+			overflow: hidden;
+			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			text-decoration: none;
+			color: inherit;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+
+		.template-card:hover {
+			transform: translateY(-8px);
+			box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+		}
+
+		.template-card-header {
+			background: linear-gradient(135deg, #7b1f82 0%, #460055 100%);
+			padding: 30px 20px;
+			text-align: center;
+			flex-shrink: 0;
+		}
+
+		.template-card-header h2 {
+			font-size: 24px;
+			color: #ffffff;
+			font-weight: 800;
+			margin-bottom: 10px;
+			font-family: 'DM Serif Display', Georgia, serif;
+		}
+
+		.template-card-header .icon {
+			font-size: 40px;
+			margin-bottom: 10px;
+		}
+
+		.template-card-body {
+			padding: 25px 20px;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.template-card-description {
+			font-size: 14px;
+			color: #666;
+			line-height: 1.6;
+			margin-bottom: 20px;
+		}
+
+		.template-card-footer {
+			display: flex;
+			gap: 10px;
+		}
+
+		.btn {
+			flex: 1;
+			padding: 12px;
+			border-radius: 8px;
+			text-decoration: none;
+			font-size: 13px;
+			font-weight: 700;
+			text-align: center;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			border: none;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.btn-primary {
+			background: linear-gradient(135deg, #7b1f82 0%, #460055 100%);
+			color: #ffffff;
+		}
+
+		.btn-primary:hover {
+			background: linear-gradient(135deg, #460055 0%, #7b1f82 100%);
+		}
+
+		.btn-secondary {
+			background: #f0f0f0;
+			color: #460055;
+			font-weight: 700;
+		}
+
+		.btn-secondary:hover {
+			background: #e0e0e0;
+		}
+
+		.status {
+			display: inline-block;
+			font-size: 11px;
+			padding: 4px 10px;
+			border-radius: 12px;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			margin-bottom: 10px;
+		}
+
+		.status.active {
+			background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+			color: #ffffff;
+		}
+
+		.status.draft {
+			background: #fff9c4;
+			color: #f57f17;
+		}
+
+		.empty-state {
+			background: rgba(255, 255, 255, 0.1);
+			border-radius: 16px;
+			padding: 60px 40px;
+			text-align: center;
+			color: rgba(255, 255, 255, 0.9);
+		}
+
+		.empty-state-icon {
+			font-size: 64px;
+			margin-bottom: 20px;
+		}
+
+		.empty-state h2 {
+			font-size: 28px;
+			margin-bottom: 10px;
+			font-family: 'DM Serif Display', Georgia, serif;
+		}
+
+		.empty-state p {
+			font-size: 16px;
+			line-height: 1.6;
+			margin-bottom: 30px;
+		}
+
+		.footer {
+			text-align: center;
+			color: rgba(255, 255, 255, 0.7);
+			font-size: 12px;
+			padding-top: 30px;
+			border-top: 1px solid rgba(255, 255, 255, 0.2);
+			margin-top: 50px;
+		}
+
+		@media (max-width: 600px) {
+			.header h1 {
+				font-size: 32px;
+			}
+
+			.templates-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- HEADER -->
+		<div class="header">
+			<h1>✨ JOA Email Templates</h1>
+			<p>Bibliothèque de templates email pour les campagnes JOA</p>
+		</div>
+
+		<!-- TEMPLATES GRID -->
+		<div class="templates-grid" id="templatesGrid">
+			<!-- Les templates seront générés dynamiquement ici -->
+		</div>
+
+		<!-- FOOTER -->
+		<div class="footer">
+			<p>JOA Groupe © 2025 • Tous les templates email</p>
+		</div>
+	</div>
+
+	<script>
+		// Liste des templates HTML disponibles
+		const templates = [
+			{
+				name: 'Bienvenue Club',
+				file: 'CRM_J0_Bienvenue_NEWV2.html',
+				icon: '🎉',
+				description: 'Email de bienvenue pour les nouveaux membres du Club JOA',
+				status: 'active'
+			}
+			// Ajoutez vos nouveaux templates ici
+		];
+
+		// Fonction pour générer les cartes de templates
+		function renderTemplates() {
+			const grid = document.getElementById('templatesGrid');
+			
+			if (templates.length === 0) {
+				grid.innerHTML = `
+					<div style="grid-column: 1 / -1;">
+						<div class="empty-state">
+							<div class="empty-state-icon">📧</div>
+							<h2>Aucun template trouvé</h2>
+							<p>Les templates email seront listés ici au fur et à mesure de leur création.</p>
+						</div>
+					</div>
+				`;
+				return;
+			}
+
+			grid.innerHTML = templates.map((template, index) => `
+				<a href="${template.file}" class="template-card" title="Ouvrir ${template.name}">
+					<div class="template-card-header">
+						<div class="icon">${template.icon}</div>
+						<h2>${template.name}</h2>
+					</div>
+					<div class="template-card-body">
+						<div>
+							<div class="status ${template.status}">
+								${template.status === 'active' ? '✓ Actif' : '✎ Brouillon'}
+							</div>
+							<p class="template-card-description">${template.description}</p>
+						</div>
+						<div class="template-card-footer">
+							<button class="btn btn-primary" onclick="event.preventDefault(); window.open('${template.file}', '_blank');">
+								👁️ Prévisualiser
+							</button>
+							<button class="btn btn-secondary" onclick="event.preventDefault(); copyPath('${template.file}');">
+								📋 Copier
+							</button>
+						</div>
+					</div>
+				</a>
+			`).join('');
+		}
+
+		// Fonction pour copier le chemin du fichier
+		function copyPath(path) {
+			navigator.clipboard.writeText(path).then(() => {
+				alert('Chemin copié : ' + path);
+			}).catch(() => {
+				alert('Erreur lors de la copie');
+			});
+		}
+
+		// Initialiser la page
+		renderTemplates();
+	</script>
+</body>
+</html>
